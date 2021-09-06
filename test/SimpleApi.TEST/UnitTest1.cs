@@ -23,7 +23,7 @@ namespace SimpleApi.TEST
             //When
             
             //Then
-            Assert.Null(returnValue);
+            Assert.NotNull(returnValue);
         }
     }
 }
