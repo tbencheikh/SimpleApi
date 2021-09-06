@@ -7,17 +7,16 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'Ubuntu-16.04'
 
 variables:
   buildConfiguration: 'Release'
 
 steps:
 
-- task: UseDotNet@2
+- task: DotNetCoreCLI@2
   inputs:
-    version: '5.0.x'
-    includePreviewVersions: true # Required for preview versions
+    command: test
     projects: '**/test/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
 
