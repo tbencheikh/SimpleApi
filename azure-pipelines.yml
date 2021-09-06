@@ -13,7 +13,7 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: echo "DefaultWorkingDirectory is $(System.DefaultWorkingDirectory)"
+- script: echo "test project path is $(System.DefaultWorkingDirectory)/test/SimpleApi.TEST.csproj"
   name: printvar
 
 - task: UseDotNet@2
