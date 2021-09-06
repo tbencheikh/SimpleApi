@@ -13,7 +13,7 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: echo "test project path is $(System.DefaultWorkingDirectory)/test/SimpleApi.TEST.csproj"
+- script: echo "test project path is $(System.DefaultWorkingDirectory)/test/SimpleApi.TEST/SimpleApi.TEST.csproj"
   name: printvar
 
 - task: UseDotNet@2
@@ -31,7 +31,7 @@ steps:
   displayName: 'dotnet test'
   inputs:
     command: test
-    projects: '$(System.DefaultWorkingDirectory)/test/SimpleApi.TEST.csproj'
+    projects: '$(System.DefaultWorkingDirectory)/test/SimpleApi.TEST/SimpleApi.TEST.csproj'
     arguments: '--configuration $(buildConfiguration)'  
     publishTestResults: true    
 
