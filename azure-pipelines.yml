@@ -31,7 +31,7 @@ steps:
     command: 'test'
     arguments: '--configuration $(buildConfiguration)'
     publishTestResults: true
-    projects: '**/*Test/*.csproj'
+    projects: '**/test/*.csproj'
 
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
