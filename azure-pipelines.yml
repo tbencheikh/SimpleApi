@@ -7,23 +7,31 @@ trigger:
 - main
 
 pool:
-  vmImage: 'Ubuntu-16.04'
+  vmImage: 'Ubuntu-latest'
 
 variables:
   buildConfiguration: 'Release'
 
 steps:
 
+- task: UseDotNet@2
+  inputs:
+    version: '5.0.x'
+    includePreviewVersions: true
+  
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
   inputs:
-    command: test
-    projects: '**/test/*.csproj'
+    command: 'build'
+    configuration: $(buildConfiguration)
+  
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet test'
+  inputs:
+    command: 'test'
     arguments: '--configuration $(buildConfiguration)'
-
-- task: PublishTestResults@2
-  inputs:
-    testResultsFormat: 'XUnit'
-    testResultsFiles: '**/TEST-*.xml'
+    publishTestResults: true
+    projects: '**/*Test/*.csproj'
 
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
